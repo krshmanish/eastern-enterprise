@@ -11,13 +11,27 @@ import { MatTableDataSource } from '@angular/material/table';
 export class EmployeesComponent implements OnInit {
   displayedColumns = ['id', 'name', 'phone', 'city', 'address1', 'address2', 'postalCode'];
   dataSource: any = new MatTableDataSource<any>();
+  tableValue: any[];
 
   constructor(private commonService: CommonService) {
   }
 
   ngOnInit() {
-    this.dataSource = this.commonService.getEmployees();
-    console.log(this.dataSource);
+    this.tableValue = this.commonService.getEmployees();
+    this.dataSource = this.tableValue;
   }
 
+  onKeyUp(event: any) {
+    let searchKey = event.target.value.toUpperCase();
+    if (!searchKey) {
+      this.dataSource = this.tableValue;
+    } else {
+      this.dataSource = this.tableValue.filter(data => {
+        if (data.name.toUpperCase().indexOf(searchKey) > -1 || data.address.city.toUpperCase().indexOf(searchKey) > -1) {
+          return data;
+        }
+      });
+    }
+
+  }
 }

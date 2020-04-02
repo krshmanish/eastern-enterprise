@@ -1,3 +1,9 @@
+<mat-form-field appearance="fill" class='search-box'>
+    <mat-label>Search</mat-label>
+    <input autocomplete="'no'" matInput placeholder="Search here..." minlength="0" maxlength="200"
+        (keyup)="onKeyUp($event)" type="text" />
+</mat-form-field>
+
 <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>
