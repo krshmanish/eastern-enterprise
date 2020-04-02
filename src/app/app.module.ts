@@ -11,12 +11,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { EmployeesComponent } from './employees/employees.component';
 import { AppComponent } from './app.component';
 import { NumberPipe } from './number.pipe';
+import { AddEditEmployeeComponent } from './add-edit-employee/add-edit-employee.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeesComponent,
-    NumberPipe
+    NumberPipe,
+    AddEditEmployeeComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,8 @@ import { NumberPipe } from './number.pipe';
     BrowserAnimationsModule,
     MatTableModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [
     {

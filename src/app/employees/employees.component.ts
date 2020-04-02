@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../common.service';
 
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees',
@@ -9,11 +10,11 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./employees.component.less']
 })
 export class EmployeesComponent implements OnInit {
-  displayedColumns = ['id', 'name', 'phone', 'city', 'address1', 'address2', 'postalCode'];
+  displayedColumns = ['id', 'name', 'phone', 'city', 'address1', 'address2', 'postalCode', 'edit'];
   dataSource: any = new MatTableDataSource<any>();
   tableValue: any[];
 
-  constructor(private commonService: CommonService) {
+  constructor(private commonService: CommonService, private router: Router) {
   }
 
   ngOnInit() {
@@ -32,6 +33,15 @@ export class EmployeesComponent implements OnInit {
         }
       });
     }
+  }
 
+  onAddNew() {
+    this.router.navigate(['/employees/add']);
+  }
+
+  onEdit(row) {
+    console.log(row);
+    
+    this.router.navigate(['/employees', row.id, 'edit']);
   }
 }
